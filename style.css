@@ -6,6 +6,7 @@
 }
 
 body {
+  background-color: #eeedec;
   background-color: #2f2f2f;
   cursor: default;
 }
@@ -29,7 +30,7 @@ header {
 input[type="text"],
 input[type="text"]:focus {
   border: none;
-  background: rgb(197, 196, 196);
+  background: rgb(255, 255, 255);
   max-width: 400px;
 }
 .todos li {
@@ -57,4 +58,55 @@ a {
 
 .filtered {
   display: none !important;
+}
+
+.icons {
+  font-size: 1.3em;
+  user-select: none;
+}
+
+.delete,
+.info,
+.completed {
+  font-weight: normal !important;
+  padding: 3px;
+}
+
+.delete:hover,
+.info:hover,
+.completed:hover {
+  font-weight: 900 !important;
+  cursor: pointer;
+}
+
+.checked {
+  background-color: rgb(81, 151, 255) !important;
+}
+
+.checked span {
+  text-decoration: line-through !important;
+}
+
+.checked .completed {
+  font-weight: 900 !important;
+}
+
+.details {
+  background-color: rgb(245, 245, 245) !important;
+  /* margin-bottom: 10px; */
+}
+.details span {
+  font-size: 0.8em;
+}
+
+.information {
+  font-weight: 900 !important;
+}
+
+.task {
+  margin-top: 5px;
+}
+
+.add {
+  width: 100%;
 }

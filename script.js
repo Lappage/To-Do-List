@@ -1,6 +1,16 @@
 const addForm = document.querySelector(".add");
 const list = document.querySelector(".todos");
 const search = document.querySelector(".search input");
+db.collection("To-Dos")
+  .get()
+  .then((snapshot) => {
+    snapshot.docs.forEach((doc) => {
+      console.log(doc.data());
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const generateTemplate = (todo) => {
   const html = `

@@ -4,7 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>To Do List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css" />
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -17,24 +27,56 @@
           </form>
         </header>
 
-        <ul class="list-group todos mx-auto text-light">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>Learn more Javascript</span>
-            <i class="fa-regular fa-trash-can delete"></i>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>Learn C# Fundamentals</span>
-            <i class="fa-regular fa-trash-can delete"></i>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <span>Learn ASP.NET</span>
-            <i class="fa-regular fa-trash-can delete"></i>
-          </li>
+        <ul class="todos list-group mx-auto text-light">
+          <div class="task">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>Learn C# Fundamentals</span>
+              <div class="icons">
+                <i class="completed fa-sharp fa-solid fa-square-check"></i>
+                <i class="info fa-sharp fa-solid fa-circle-info"></i>
+                <i class="delete fa-solid fa-trash-can"></i>
+              </div>
+            </li>
+            <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
+              <span>Created: 20/01/2024</span>
+              <span>Completed: 20/01/2024</span>
+            </li>
+          </div>
+          <div class="task">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>Learn C# Fundamentals</span>
+              <div class="icons">
+                <i class="completed fa-sharp fa-solid fa-square-check"></i>
+                <i class="info fa-sharp fa-solid fa-circle-info"></i>
+                <i class="delete fa-solid fa-trash-can"></i>
+              </div>
+            </li>
+            <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
+              <span>Created: 20/01/2024</span>
+              <span>Completed: 20/01/2024</span>
+            </li>
+          </div>
+
+          <div class="task">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>Learn C# Fundamentals</span>
+              <div class="icons">
+                <i class="completed fa-sharp fa-solid fa-square-check"></i>
+                <i class="info fa-sharp fa-solid fa-circle-info"></i>
+                <i class="delete fa-solid fa-trash-can"></i>
+              </div>
+            </li>
+            <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
+              <span>Created: 20/01/2024</span>
+              <span>Completed: 20/01/2024</span>
+            </li>
+          </div>
         </ul>
 
         <form class="add text-center my-4">
-          <label class="text-light">Add a new todo...</label>
+          <label class="text-light">Add a new task...</label>
           <input class="form-control m-auto" type="text" name="add" />
+          <button class="btn btn-secondary">Add</button>
         </form>
       </div>
       <footer>
@@ -42,7 +84,23 @@
       </footer>
     </main>
 
-    <script src="https://kit.fontawesome.com/2b80c9c069.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-firestore.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDqFNUbw8nGu6VWpjm5Lp3meYo7txpqPPo",
+        authDomain: "to-do-app-1306a.firebaseapp.com",
+        projectId: "to-do-app-1306a",
+        storageBucket: "to-do-app-1306a.appspot.com",
+        messagingSenderId: "70054467191",
+        appId: "1:70054467191:web:5780c02c37c28836be1872",
+        measurementId: "G-E51E78NLR2",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+    <script src="app.js"></script>
   </body>
 </html>
