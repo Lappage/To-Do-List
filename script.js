@@ -24,8 +24,26 @@ db.collection("To-Dos")
       } else if (change.type === "modified") {
         completeTask(doc.id);
       }
+      sortTasksList();
     });
   });
+
+function sortTasksList() {
+  const tasks = [...list.children];
+
+  // tasks.sort((a, b) => {
+  //   const dateA = new Date(a.createdDate).getTime();
+  //   const dateB = new Date(b.createdDate).getTime();
+
+  //   return dateB - dateA; // For descending order
+  // });
+
+  tasks.forEach((item) => {
+    if (item.children[0].classList.contains("checked")) {
+      list.append(item);
+    }
+  });
+}
 
 function formatCreatedTime(data) {
   const createdDate = data.createdDate.toDate();
@@ -69,7 +87,8 @@ function addTask(data, id) {
   <span><b>ID:</b> ${id}</span>
 </li>
 </div>`;
-  list.innerHTML += html;
+
+  list.innerHTML = html + list.innerHTML;
 }
 
 function completeTask(id) {
@@ -77,6 +96,7 @@ function completeTask(id) {
   tasks.forEach((task) => {
     if (task.id === id) {
       task.children[0].classList.toggle("checked");
+      list.appendChild(task);
     }
   });
 }
