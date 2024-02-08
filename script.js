@@ -1,5 +1,4 @@
 const list = document.querySelector(".todos");
-const search = document.querySelector(".search input");
 
 const generateTemplate = (todo) => {
   const html = `

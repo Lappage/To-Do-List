@@ -122,3 +122,7 @@ a {
   color: #2f2f2f;
   background-color: #8ee1ff;
 }
+
+li span {
+  max-width: 345px;
+}

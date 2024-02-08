@@ -2,28 +2,51 @@ const addForm = document.querySelector(".add");
 const list = document.querySelector(".todos");
 const checkbox = document.querySelectorAll(".completed");
 const remove = document.querySelectorAll(".delete");
+const search = document.querySelector(".search input");
 
 // Get Tasks
 
-db.collection("To-Dos").onSnapshot((snapshot) => {
-  console.log(snapshot.docChanges());
-  // Everytime there is a change to the database, firestore takes a snapshot of the updated collection
-  // onSnapshot() will fire everytime the database is updated
-  snapshot.docChanges().forEach((change) => {
-    const doc = change.doc;
+db.collection("To-Dos")
+  .orderBy("createdDate", "asc")
+  .onSnapshot((snapshot) => {
+    // Everytime there is a change to the database, firestore takes a snapshot of the updated collection
+    // onSnapshot() will fire everytime the database is updated
+    snapshot.docChanges().forEach((change) => {
+      const doc = change.doc;
 
-    if (change.type === "added") {
-      addTask(doc.data(), doc.id);
-    } else if (change.type === "removed") {
-      deleteTask(doc.id);
-    } else if (change.type === "modified") {
-      completeTask(doc.id);
-    }
+      if (change.type === "added") {
+        addTask(doc.data(), doc.id);
+      } else if (change.type === "removed") {
+        deleteTask(doc.id);
+      } else if (change.type === "modified") {
+        completeTask(doc.id);
+      }
+    });
   });
-});
+
+function formatCreatedTime(data) {
+  const createdDate = data.createdDate.toDate();
+  const year = createdDate.getFullYear();
+  const month = createdDate.getMonth() + 1;
+  const day = createdDate.getDate();
+  const hour = createdDate.getHours();
+  const minutes = createdDate.getMinutes();
+  const padded = (number) => {
+    if (number < 10) {
+      return `0${number}`;
+    } else {
+      return number;
+    }
+  };
+
+  const formattedDate = `${padded(hour)}:${padded(minutes)} - ${padded(day)}/${padded(month)}/${year}`;
+
+  return formattedDate;
+}
 
 function addTask(data, id) {
   let completed = data.completed ? "checked" : "";
+  const createdTime = formatCreatedTime(data);
   const html = `
 
 
@@ -37,7 +60,7 @@ function addTask(data, id) {
     </div>
   </li>
   <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
-    <span>Created: ${data.createdDate.toDate()}</span>
+    <span>Created: ${createdTime}</span>
     <span>ID: ${id}</span>
   </li>
 </div>
@@ -128,4 +151,29 @@ list.addEventListener("click", (e) => {
     }
   }
   //
+});
+
+// Search
+
+const filterList = (query) => {
+  Array.from(list.children)
+    .filter((item) => {
+      return !item.textContent.toLowerCase().includes(query); // returns an array containing any items that don't include the search query
+    })
+    .forEach((item) => {
+      item.classList.add("filtered"); // adds the class 'filtered' to any items that don't match the search query
+    });
+
+  Array.from(list.children)
+    .filter((item) => {
+      return item.textContent.toLowerCase().includes(query); // returns an array containing any items that include the search query
+    })
+    .forEach((item) => {
+      item.classList.remove("filtered"); // removes the class 'filtered' to any items that match the search query
+    });
+};
+
+search.addEventListener("keyup", () => {
+  const query = search.value.trim().toLowerCase();
+  filterList(query);
 });
