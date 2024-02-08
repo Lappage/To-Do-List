@@ -38,20 +38,30 @@ db.collection("To-Dos")
     console.log(error);
   });
 
+// Checkboxes
+
 checkbox.forEach((box) => {
   box.addEventListener("click", () => {
     box.parentElement.parentElement.classList.toggle("checked");
   });
 });
 
+// Info Buttons
+
 infoButton.forEach((button) => {
   button.addEventListener("click", () => {
-    button.parentElement.parentElement.nextElementSibling.classList.toggle("d-none");
-    button.classList.toggle("information");
+    const isActive = button.classList.contains("information");
+
+    infoButton.forEach((btn) => {
+      if (btn.classList.contains("information")) {
+        btn.parentElement.parentElement.nextElementSibling.classList.add("d-none");
+        btn.classList.remove("information");
+      }
+    });
+
+    if (!isActive) {
+      button.parentElement.parentElement.nextElementSibling.classList.toggle("d-none");
+      button.classList.toggle("information");
+    }
   });
 });
-
-// info.addEventListener("click", () => {
-//   info.parentElement.parentElement.nextElementSibling.classList.toggle("d-none");
-//   info.classList.toggle("information");
-// });

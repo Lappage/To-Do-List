@@ -1,16 +1,5 @@
-const addForm = document.querySelector(".add");
 const list = document.querySelector(".todos");
 const search = document.querySelector(".search input");
-db.collection("To-Dos")
-  .get()
-  .then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
-      console.log(doc.data());
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
 const generateTemplate = (todo) => {
   const html = `
@@ -41,17 +30,6 @@ list.addEventListener("click", (e) => {
   }
 });
 
-list.addEventListener("mouseover", (e) => {
-  if (e.target.classList.contains("delete")) {
-    e.target.classList.add("fa-solid");
-  }
-});
-
-list.addEventListener("mouseout", (e) => {
-  if (e.target.classList.contains("delete")) {
-    e.target.classList.remove("fa-solid");
-  }
-});
 // Search
 
 const filterList = (query) => {

@@ -6,8 +6,8 @@
 }
 
 body {
-  background-color: #eeedec;
   background-color: #2f2f2f;
+  background: linear-gradient(to top, #2f2f2f, rgb(136, 136, 136));
   cursor: default;
 }
 
@@ -20,6 +20,7 @@ main {
 }
 
 header {
+  letter-spacing: 0.6em;
   padding-bottom: 50px;
   padding-top: 50px;
 }
@@ -29,6 +30,7 @@ header {
 }
 input[type="text"],
 input[type="text"]:focus {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
   border: none;
   background: rgb(255, 255, 255);
   max-width: 400px;
@@ -41,9 +43,6 @@ input[type="text"]:focus {
   cursor: pointer;
 }
 
-.add {
-  padding: 30px;
-}
 footer {
   padding-top: 50px;
   padding-bottom: 15px;
@@ -92,7 +91,8 @@ a {
 }
 
 .details {
-  background-color: rgb(245, 245, 245) !important;
+  background-color: rgb(223, 223, 223) !important;
+
   /* margin-bottom: 10px; */
 }
 .details span {
@@ -107,6 +107,18 @@ a {
   margin-top: 5px;
 }
 
-.add {
-  width: 100%;
+.add-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  padding: 0 20px;
+  background-color: rgb(81, 151, 255);
+  color: white;
+  border: none;
+}
+.btn-primary:hover {
+  color: #2f2f2f;
+  background-color: #8ee1ff;
 }

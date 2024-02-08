@@ -23,7 +23,7 @@
         <header class="text-center text-light my-4">
           <h1 class="mb-4">To Do List</h1>
           <form class="search">
-            <input class="form-control m-auto" type="text" name="search" placeholder="search to dos" />
+            <input class="form-control m-auto" type="text" name="search" placeholder="Search" />
           </form>
         </header>
 
@@ -73,10 +73,12 @@
           </div>
         </ul>
 
-        <form class="add text-center my-4">
-          <label class="text-light">Add a new task...</label>
-          <input class="form-control m-auto" type="text" name="add" />
-          <button class="btn btn-secondary">Add</button>
+        <form class="add text-center my-5">
+          <span class="text-light lead">Add a new task</span>
+          <div class="add-bar mt-2">
+            <input class="form-control" type="text" name="add" />
+            <button class="addBtn btn btn-primary ms-2">Add</button>
+          </div>
         </form>
       </div>
       <footer>
