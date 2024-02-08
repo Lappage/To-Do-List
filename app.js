@@ -60,8 +60,8 @@ function addTask(data, id) {
     </div>
   </li>
   <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
-    <span>Created: ${createdTime}</span>
-    <span>ID: ${id}</span>
+    <span><b>Created:</b> ${createdTime}</span>
+    <span><b>ID:</b> ${id}</span>
   </li>
 </div>
 `;

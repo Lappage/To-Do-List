@@ -126,3 +126,41 @@ a {
 li span {
   max-width: 345px;
 }
+@media screen and (max-width: 450px) {
+  li span {
+    max-width: 270px;
+  }
+  footer {
+    font-size: 0.7em;
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+  .details span {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  li span {
+    max-width: 100px;
+  }
+  footer {
+    font-size: 0.7em;
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+  .details span {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
