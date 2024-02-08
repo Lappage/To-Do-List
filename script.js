@@ -24,20 +24,12 @@ db.collection("To-Dos")
       } else if (change.type === "modified") {
         completeTask(doc.id);
       }
-      sortTasksList();
+      sortTasks();
     });
   });
 
-function sortTasksList() {
+function sortTasks() {
   const tasks = [...list.children];
-
-  // tasks.sort((a, b) => {
-  //   const dateA = new Date(a.createdDate).getTime();
-  //   const dateB = new Date(b.createdDate).getTime();
-
-  //   return dateB - dateA; // For descending order
-  // });
-
   tasks.forEach((item) => {
     if (item.children[0].classList.contains("checked")) {
       list.append(item);
