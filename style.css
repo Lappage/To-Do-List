@@ -62,18 +62,44 @@ a {
 .icons {
   font-size: 1.3em;
   user-select: none;
+  margin-left: auto;
+}
+.completed {
+  font-size: 1.3em;
+  user-select: none;
+  margin-right: 10px;
+}
+
+.checkbox .hover-icon,
+.checkbox .active-icon {
+  display: none;
+}
+.checkbox:hover .default-icon,
+.checkbox:hover .active-icon {
+  display: none;
+}
+.checkbox:hover .hover-icon {
+  display: flex; /* Show the hover icon (square) on hover */
+  cursor: pointer;
+}
+
+.checked .active-icon {
+  display: flex;
+}
+
+.checked .hover-icon,
+.checked .default-icon {
+  display: none;
 }
 
 .delete,
-.info,
-.completed {
+.info {
   font-weight: normal !important;
   padding: 3px;
 }
 
 .delete:hover,
-.info:hover,
-.completed:hover {
+.info:hover {
   font-weight: 900 !important;
   cursor: pointer;
 }
@@ -86,9 +112,9 @@ a {
   text-decoration: line-through !important;
 }
 
-.checked .completed {
+/* .checked .completed {
   font-weight: 900 !important;
-}
+} */
 
 .details {
   background-color: rgb(223, 223, 223) !important;
@@ -107,12 +133,16 @@ a {
   margin-top: 5px;
 }
 
+.task li {
+  display: flex;
+  align-items: center;
+}
 .add-bar {
   display: flex;
   justify-content: space-between;
 }
 
-.btn-primary {
+.btn-light {
   padding: 0 20px;
   background-color: rgb(81, 151, 255);
   color: white;
@@ -124,8 +154,10 @@ a {
 }
 
 li span {
-  max-width: 345px;
+  justify-self: start;
+  max-width: 340px;
 }
+
 @media screen and (max-width: 450px) {
   li span {
     max-width: 270px;
@@ -147,7 +179,7 @@ li span {
 
 @media screen and (max-width: 350px) {
   li span {
-    max-width: 100px;
+    max-width: 130px;
   }
   footer {
     font-size: 0.7em;

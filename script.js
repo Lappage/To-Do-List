@@ -3,7 +3,10 @@ const list = document.querySelector(".todos");
 const checkbox = document.querySelectorAll(".completed");
 const remove = document.querySelectorAll(".delete");
 const search = document.querySelector(".search input");
-
+let taskToDelete = null;
+const modal = new bootstrap.Modal(document.getElementById("confirmDelete"), {
+  keyboard: true,
+});
 // Get Tasks
 
 db.collection("To-Dos")
@@ -17,7 +20,7 @@ db.collection("To-Dos")
       if (change.type === "added") {
         addTask(doc.data(), doc.id);
       } else if (change.type === "removed") {
-        deleteTask(doc.id);
+        deleteTaskFromHTML(doc.id);
       } else if (change.type === "modified") {
         completeTask(doc.id);
       }
@@ -47,25 +50,25 @@ function formatCreatedTime(data) {
 function addTask(data, id) {
   let completed = data.completed ? "checked" : "";
   const createdTime = formatCreatedTime(data);
-  const html = `
-
-
-  <div class="task" id="${id}">
-  <li class="list-group-item d-flex justify-content-between align-items-center ${completed}" >
-    <span>${data.task}</span>
-    <div class="icons">
-      <i class="completed fa-sharp fa-solid fa-square-check"></i>
-      <i class="info fa-sharp fa-solid fa-circle-info"></i>
-      <i class="delete fa-solid fa-trash-can"></i>
-    </div>
-  </li>
-  <li class="details list-group-item d-flex justify-content-between align-items-center d-none">
-    <span><b>Created:</b> ${createdTime}</span>
-    <span><b>ID:</b> ${id}</span>
-  </li>
-</div>
-`;
-
+  const html = `          
+<div class="task" id="${id}">
+<li class="list-group-item ${completed}">
+  <div class="checkbox">
+    <i class="completed fa-sharp fa-solid fa-square-check hover-icon"></i>
+    <i class="completed fa-sharp fa-regular fa-square-check active-icon"></i>
+    <i class="completed fa-sharp fa-regular fa-square default-icon"></i>
+  </div>
+  <span>${data.task}</span>
+  <div class="icons">
+    <i class="info fa-sharp fa-solid fa-circle-info"></i>
+    <i class="delete fa-solid fa-trash-can" data-bs-toggle="modal" data-bs-target="#confirmDelete"></i>
+  </div>
+</li>
+<li class="details list-group-item d-flex justify-content-between align-items-center d-none">
+  <span><b>Created:</b> ${createdTime}</span>
+  <span><b>ID:</b> ${id}</span>
+</li>
+</div>`;
   list.innerHTML += html;
 }
 
@@ -78,7 +81,7 @@ function completeTask(id) {
   });
 }
 
-function deleteTask(id) {
+function deleteTaskFromHTML(id) {
   const tasks = [...list.children];
   tasks.forEach((task) => {
     if (task.id === id) {
@@ -108,17 +111,18 @@ addForm.addEventListener("submit", (e) => {
 });
 
 // Event Listener for task buttons
+function confirmDelete(id) {
+  db.collection("To-Dos").doc(id).delete();
+  modal.hide();
+}
 
 list.addEventListener("click", (e) => {
   // Delete Button
   if (e.target.classList.contains("delete")) {
-    const id = e.target.parentElement.parentElement.parentElement.id;
-
-    db.collection("To-Dos").doc(id).delete();
-    //
+    taskToDelete = e.target.parentElement.parentElement.parentElement.id;
+    modal.show();
   } else if (e.target.classList.contains("completed")) {
     // Checkboxes
-    // e.target.parentElement.parentElement.classList.toggle("checked");
 
     let id = e.target.parentElement.parentElement.parentElement.id;
 
@@ -151,6 +155,13 @@ list.addEventListener("click", (e) => {
     }
   }
   //
+});
+
+document.querySelector(".btn-danger").addEventListener("click", () => {
+  if (taskToDelete !== null) {
+    confirmDelete(taskToDelete);
+    taskToDelete = null;
+  }
 });
 
 // Search
