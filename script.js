@@ -32,6 +32,8 @@ db.collection("To-Dos")
     });
   });
 
+// Format Date & Time
+
 function formatCreatedTime(data) {
   const createdDate = data.createdDate.toDate();
   const year = createdDate.getFullYear();
