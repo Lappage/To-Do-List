@@ -21,15 +21,15 @@ main {
 
 header {
   letter-spacing: 0.6em;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 .container {
   max-width: 500px;
   margin: auto;
 }
-input[type="text"],
-input[type="text"]:focus {
+header input[type="text"],
+header input[type="text"]:focus {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
   border: none;
   background: rgb(255, 255, 255);
@@ -158,6 +158,36 @@ li span {
   max-width: 340px;
 }
 
+form input {
+  background-color: white;
+  width: 476px;
+  height: 49.19px;
+  border: none;
+  padding: 0 25px;
+}
+
+form {
+  position: relative;
+  top: 30px;
+}
+
+form button {
+  background-color: white;
+  border: none;
+  padding: 0 20px;
+  font-size: 1.3em;
+  outline: none;
+}
+
+form button:hover {
+  font-weight: 900 !important;
+}
+
+form input:focus {
+  outline: none;
+  border: none;
+}
+
 @media screen and (max-width: 450px) {
   li span {
     max-width: 270px;
@@ -194,5 +224,9 @@ li span {
     width: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  form input {
+    max-width: 200px;
   }
 }

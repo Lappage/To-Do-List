@@ -40,18 +40,17 @@
         <header class="text-center text-light my-4">
           <h1 class="mb-4">To Do List</h1>
           <form class="search">
-            <input class="form-control m-auto" type="text" name="search" placeholder="Search" />
+            <input class="form-control m-auto" type="text" name="search" autocomplete="off" placeholder="Search" />
           </form>
         </header>
-        <ul class="todos list-group mx-auto text-muted"></ul>
-
         <form class="add text-center my-5">
-          <span class="text-light lead">Add a new task</span>
+          <!-- <span class="text-light lead">Add a new task</span> -->
           <div class="add-bar mt-2">
-            <input class="form-control" type="text" name="add" />
-            <button type="submit" class="addBtn btn btn-light ms-2">Add</button>
+            <input class="add" type="text" name="add" autocomplete="off" placeholder="Add a new task" />
+            <button type="submit" class="fa-sharp fa-regular fa-plus"></button>
           </div>
         </form>
+        <ul class="todos list-group mx-auto text-muted"></ul>
       </div>
       <footer>
         <p>This project is open source. <a href="https://github.com/Lappage/To-Do-List" target="_blank">Improve this page.</a></p>
