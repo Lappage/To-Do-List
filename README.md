@@ -6,7 +6,7 @@ My first full-stack project, a To-Do List application built with Vanilla JavaScr
 ## Features
 
 - **Real-Time Data Sync:** - Firebase allows the application to update in real-time across all devices.
-- **Task Management:** - add, delete, and mark tasks as complete.
+- **Task Management:** - Add, delete, and mark tasks as complete.
 - **Search Functionality:** - Quickly find tasks using the search feature.
 - **Delete Confirmation** - A bootstap modal prevents accidentally deleting tasks.
 - **Task Information:** - Clicking the info button on a task displays the task's creation date, time, and a unique ID.
