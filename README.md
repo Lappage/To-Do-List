@@ -3,8 +3,6 @@
 
 My first full-stack project, a To-Do List application built with Vanilla JavaScript and a Firebase backend.
 ### View the live demo [here](https://lappage.net/list)
-<a href="https://lappage.net/list" target="_blank">Live Demo</a>
-
 ## Features
 
 - **Real-Time Data Sync:** - Firebase allows the application to update in real-time across all devices.
