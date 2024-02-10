@@ -19,11 +19,8 @@ db.collection("To-Dos")
       const doc = change.doc;
 
       if (change.type === "added") {
-        if (doc.data().completed) {
-          addTaskToHTML(doc.data(), doc.id, true);
-        } else {
-          addTaskToHTML(doc.data(), doc.id, false);
-        }
+        // If the task is completed add it to the completed list
+        doc.data().completed ? addTaskToHTML(doc.data(), doc.id, true) : addTaskToHTML(doc.data(), doc.id, false);
       } else if (change.type === "removed") {
         deleteTaskFromHTML(doc.id);
       } else if (change.type === "modified") {
@@ -77,6 +74,7 @@ function addTaskToHTML(data, id, done) {
 </li>
 </div>`;
 
+  // If the task is completed add it to the completed list
   done ? (completedTasks.innerHTML = html + completedTasks.innerHTML) : (outstandingTasks.innerHTML = html + outstandingTasks.innerHTML);
 }
 
